@@ -42,24 +42,21 @@
         #youtube-player { /* iframe이 삽입될 div */
             width: 100%;
             height: 100%;
-            /* 화면을 꽉 채우고, 영상 비율 유지를 위해 scale 조정 (필요시 값 변경) */
-            /* 이 부분은 영상의 원래 비율에 따라 조정이 필요할 수 있습니다 */
-             position: absolute;
+            position: absolute;
             top: 50%;
             left: 50%;
             min-width: 100%;
             min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translateX(-50%) translateY(-50%) scale(1.5); /* scale 값으로 확대 조정 */
-
+            width: auto; /* 가로 세로 비율 유지를 위해 auto */
+            height: auto; /* 가로 세로 비율 유지를 위해 auto */
+            transform: translateX(-50%) translateY(-50%) scale(1.5); /* scale 값으로 확대 조정, 영상 비율에 따라 조절 */
         }
 
         .hero-overlay::before {
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-color: rgba(0, 0, 0, 0.45); /* 오버레이 약간 더 진하게 */
+            background-color: rgba(0, 0, 0, 0.45);
             z-index: 1;
         }
         .hero-content {
@@ -156,7 +153,7 @@
 
         <div class="hero-content text-center px-4">
             <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white uppercase tracking-wider leading-tight mb-4 md:mb-8" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">
-               Essence<br class="md:hidden"> <span style="color: #FFA500;">in</span> Secens
+                Essence<br class="md:hidden"> <span style="color: #FFA500;">in</span> Scenes
             </h1>
             <p class="text-lg sm:text-xl text-gray-200 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.6);">
                 최고의 기술력과 творческий 비전으로<br class="sm:hidden"> 당신의 스토리를 преобразите.
@@ -265,7 +262,7 @@
     </section>
 
     <footer class="py-10 bg-black bg-opacity-50 text-center">
-        <p class="text-gray-400">&copy; <span id="currentYear"></span> CHINE Film. All Rights Reserved.</p>
+        <p class="text-gray-400">© <span id="currentYear"></span> CHINE Film. All Rights Reserved.</p>
         <p class="text-gray-500 text-sm mt-1">Crafting visions into cinematic reality.</p>
     </footer>
 
@@ -275,32 +272,30 @@
 
         // YouTube Iframe API 로드
         var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
+        tag.src = "https://youtu.be/gNkMzUyWkFo?si=dVmpEtDwJU9RK1xt2"; // 올바른 API 스크립트 URL로 수정
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
         var player;
-        // 중요: 아래 'VIDEO_ID_HERE' 부분을 실제 YouTube 비디오 ID로 교체해야 합니다.
-        // 사용자 요청 URL https://youtu.be/gNkMzUyWkFo?si=dVmpEtDwJU9RK1xt 에서 ID를 '2'로 가정합니다.
-        // 실제로는 유효한 YouTube 영상 ID (예: 'M7lc1UVf-VE')를 사용해야 합니다.
-        var youtubeVideoId = 'dVmpEtDwJU9RK1xt; // <--- 이 부분을 실제 YouTube 비디오 ID로 변경하세요!
+        // 중요: 아래 'M7lc1UVf-VE' 부분을 실제 사용하고 싶은 YouTube 비디오 ID로 교체해야 합니다!
+        var youtubeVideoId = 'M7lc1UVf-VE'; // <<-- 이 부분을 실제 YouTube 비디오 ID로 변경하세요!
 
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('youtube-player', {
                 videoId: youtubeVideoId,
                 playerVars: {
-                    'autoplay': 1,        // 자동 재생
-                    'controls': 0,        // 컨트롤 숨김
-                    'showinfo': 0,        // 비디오 정보 숨김
-                    'modestbranding': 1,  // YouTube 로고 최소화
-                    'loop': 1,            // 반복 재생
-                    'playlist': youtubeVideoId, // 반복 재생을 위해 videoId 다시 전달
-                    'fs': 0,              // 전체 화면 버튼 숨김
-                    'cc_load_policy': 0,  // 자막 숨김
-                    'iv_load_policy': 3,  // 특수효과 노트 숨김
-                    'autohide': 0,        // 비디오 진행 표시줄 항상 표시 (컨트롤 숨김으로 무의미할 수 있음)
-                    'mute': 1,             // 자동 재생을 위해 음소거 필수!
-                    'origin': window.location.origin // CORS 관련, 현재 도메인 추가
+                    'autoplay': 1,
+                    'controls': 0,
+                    'showinfo': 0,
+                    'modestbranding': 1,
+                    'loop': 1,
+                    'playlist': youtubeVideoId,
+                    'fs': 0,
+                    'cc_load_policy': 0,
+                    'iv_load_policy': 3,
+                    'autohide': 0,
+                    'mute': 1,
+                    'origin': window.location.origin
                 },
                 events: {
                     'onReady': onPlayerReady,
@@ -310,37 +305,15 @@
         }
 
         function onPlayerReady(event) {
-            event.target.playVideo(); // 음소거 상태로 자동 재생
-            // 추가적인 화면 비율 조정 로직 (선택 사항)
-            // adjustVideoRatio(); 
+            event.target.playVideo();
         }
 
         function onPlayerStateChange(event) {
             if (event.data === YT.PlayerState.ENDED) {
-                player.seekTo(0); // 비디오가 끝나면 처음으로 돌아가 다시 재생 (loop와 함께 사용)
+                player.seekTo(0);
             }
         }
         
-        // (선택 사항) 화면 크기 변경 시 비디오 비율 조정 함수
-        // function adjustVideoRatio() {
-        //     var $video = $('#youtube-player'); // jQuery 사용 예시, 순수 JS로 변경 가능
-        //     var $container = $('#hero-video-background');
-        //     var containerWidth = $container.width();
-        //     var containerHeight = $container.height();
-        //     var videoRatio = 16/9; // 또는 player.getPlaybackQuality() 등으로 실제 비율 가져오기
-
-        //     if (containerWidth / videoRatio < containerHeight) {
-        //         $video.width(containerHeight * videoRatio);
-        //         $video.height(containerHeight);
-        //     } else {
-        //         $video.width(containerWidth);
-        //         $video.height(containerWidth / videoRatio);
-        //     }
-        // }
-        // window.addEventListener('resize', adjustVideoRatio);
-
-
-        // --- 나머지 JavaScript (이전과 동일) ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileMenuIcon = mobileMenuButton.querySelector('i');
