@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHINE Film - Essence in Secens</title>
+    <title>CHINE Film - Essence in Scenes</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -272,13 +272,13 @@
 
         // YouTube Iframe API 로드
         var tag = document.createElement('script');
-        tag.src = "https://youtu.be/gNkMzUyWkFo?si=dVmpEtDwJU9RK1xt2"; // 올바른 API 스크립트 URL로 수정
+        tag.src = "youtube.com4"; // 올바른 API 스크립트 URL
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
         var player;
-        // 중요: 아래 'M7lc1UVf-VE' 부분을 실제 사용하고 싶은 YouTube 비디오 ID로 교체해야 합니다!
-        var youtubeVideoId = 'M7lc1UVf-VE'; // <<-- 이 부분을 실제 YouTube 비디오 ID로 변경하세요!
+        // 사용자가 제공한 영상 ID로 변경
+        var youtubeVideoId = 'gNkMzUyWkFo'; // <<-- 여기에 사용자가 제공한 ID 적용
 
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('youtube-player', {
