@@ -9,12 +9,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #111111;
+            /* 요청하신 이미지의 그라데이션을 CSS로 표현 */
+            background: linear-gradient(to bottom, #FFAC70, #FF5733, #C70039, #900C3F, #581845, #111111 70%);
+            /* 위 그라데이션이 마음에 안 드시면 아래 이미지 경로를 실제 이미지로 변경하세요 */
+            /* background-image: url('여기에_업로드하신_이미지_경로.png'); */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* 배경 고정 */
             color: #ffffff;
+            min-height: 100vh; /* 최소 높이를 화면 전체로 */
         }
         .header-scrolled {
             background-color: rgba(0, 0, 0, 0.85);
@@ -27,7 +36,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
+            /* 배경 그라데이션이 있으므로 히어로 오버레이는 투명도를 약간 낮추거나 제거 고려 */
+            background-color: rgba(0, 0, 0, 0.3); /* 투명도 약간 조절 */
             z-index: 1;
         }
         .hero-content {
@@ -45,6 +55,39 @@
             40% { transform: translateY(-15px); }
             60% { transform: translateY(-7px); }
         }
+
+        /* 카드 슬라이드 스타일 */
+        .work-card {
+            background-color: rgba(255, 255, 255, 0.05); /* 카드 배경 약간 투명하게 */
+            border-radius: 0.5rem;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .work-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        .work-card img {
+            width: 100%;
+            height: 200px; /* 카드 이미지 높이 통일 */
+            object-fit: cover;
+        }
+        .work-card-content {
+            padding: 1rem;
+        }
+        .swiper-button-next, .swiper-button-prev {
+            color: #FFA500; /* 스와이퍼 네비게이션 버튼 색상 */
+        }
+        .swiper-pagination-bullet-active {
+            background-color: #FFA500; /* 스와이퍼 페이지네이션 활성 색상 */
+        }
+
+        /* 콘텐츠 가독성을 위한 섹션 배경 (선택 사항) */
+        section {
+            /* background-color: rgba(0, 0, 0, 0.1); /* 섹션별로 약간의 반투명 배경 추가 */
+            /* padding-top: 80px; /* 헤더 높이만큼 패딩 */
+            /* padding-bottom: 40px; */
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -53,20 +96,17 @@
         <div class="container mx-auto px-6 lg:px-8">
             <div class="flex justify-between items-center">
                 <a href="#" class="text-3xl font-bold text-white">CHINE</a>
-
                 <nav class="hidden md:flex items-center space-x-6 lg:space-x-8">
                     <a href="#home" class="nav-link active text-gray-300 hover:text-white transition-colors">HOME</a>
-                    <a href="#about" class="nav-link text-gray-300 hover:text-white transition-colors">ABOUT</a>
                     <a href="#works" class="nav-link text-gray-300 hover:text-white transition-colors">WORKS</a>
+                    <a href="#about" class="nav-link text-gray-300 hover:text-white transition-colors">ABOUT</a>
                     <a href="#contact" class="nav-link text-gray-300 hover:text-white transition-colors">CONTACT</a>
                 </nav>
-
                 <div class="hidden md:flex items-center space-x-4">
                     <a href="#" aria-label="Vimeo" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-vimeo-v fa-lg"></i></a>
                     <a href="#" aria-label="Instagram" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-instagram fa-lg"></i></a>
                     <a href="#" aria-label="Facebook" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-facebook-f fa-lg"></i></a>
                 </div>
-
                 <div class="md:hidden">
                     <button id="mobile-menu-button" class="text-white focus:outline-none">
                         <i class="fas fa-bars fa-lg"></i>
@@ -77,8 +117,8 @@
         <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-90 py-4">
             <nav class="flex flex-col items-center space-y-4">
                 <a href="#home" class="nav-link active text-gray-300 hover:text-white transition-colors">HOME</a>
-                <a href="#about" class="nav-link text-gray-300 hover:text-white transition-colors">ABOUT</a>
                 <a href="#works" class="nav-link text-gray-300 hover:text-white transition-colors">WORKS</a>
+                <a href="#about" class="nav-link text-gray-300 hover:text-white transition-colors">ABOUT</a>
                 <a href="#contact" class="nav-link text-gray-300 hover:text-white transition-colors">CONTACT</a>
                 <div class="flex space-x-4 pt-4">
                     <a href="#" aria-label="Vimeo" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-vimeo-v"></i></a>
@@ -91,11 +131,9 @@
 
     <section id="home" class="h-screen flex items-center justify-center relative overflow-hidden hero-overlay">
         <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
-            <source src="https://youtu.be/gNkMzUyWkFo?si=Au2rOjpWh5Zocyac" type="video/mp4"> 
             <source src="https://videos.pexels.com/video-files/854700/854700-hd_1920_1080_25fps.mp4" type="video/mp4">
             죄송합니다. 현재 브라우저에서는 비디오를 지원하지 않습니다.
         </video>
-
         <div class="hero-content text-center px-4">
             <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white uppercase tracking-wider leading-tight mb-8" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">
                 Essence<br class="md:hidden"> <span style="color: #FFA500;">in</span> Scenes
@@ -103,9 +141,8 @@
             <p class="text-lg sm:text-xl text-gray-200 mb-12 max-w-2xl mx-auto" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">
                 장면의 본질
             </p>
-
             <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 scroll-down-indicator">
-                <a href="#about" class="text-white hover:text-gray-300 transition-colors">
+                <a href="#works" class="text-white hover:text-gray-300 transition-colors">
                     <i class="fas fa-chevron-down fa-2x"></i>
                     <span class="block text-xs mt-1">SCROLL DOWN</span>
                 </a>
@@ -113,17 +150,78 @@
         </div>
     </section>
 
-    <section id="about" class="h-screen bg-gray-800 flex items-center justify-center">
-        <h2 class="text-4xl text-white">About 섹션 (예정)</h2>
-    </section>
-    <section id="works" class="h-screen bg-gray-700 flex items-center justify-center">
-        <h2 class="text-4xl text-white">Works 섹션 (예정)</h2>
-    </section>
-     <section id="contact" class="h-screen bg-gray-800 flex items-center justify-center">
-        <h2 class="text-4xl text-white">Contact 섹션 (예정)</h2>
+    <section id="works" class="py-16 lg:py-24">
+        <div class="container mx-auto px-6 lg:px-8">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-white" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">Our Works</h2>
+            <div class="swiper workSwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="work-card">
+                            <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="작품 1 이미지">
+                            <div class="work-card-content">
+                                <h3 class="text-xl font-semibold mb-2 text-white">프로젝트 타이틀 1</h3>
+                                <p class="text-gray-300 text-sm">이곳에 작품에 대한 간단한 설명을 넣습니다. 장르나 주요 특징을 기술할 수 있습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="work-card">
+                            <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="작품 2 이미지">
+                            <div class="work-card-content">
+                                <h3 class="text-xl font-semibold mb-2 text-white">프로젝트 타이틀 2</h3>
+                                <p class="text-gray-300 text-sm">이것은 두 번째 작품에 대한 설명입니다. 독특한 촬영 기법이나 메시지를 강조해보세요.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="work-card">
+                            <img src="https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="작품 3 이미지">
+                            <div class="work-card-content">
+                                <h3 class="text-xl font-semibold mb-2 text-white">프로젝트 타이틀 3</h3>
+                                <p class="text-gray-300 text-sm">세 번째 작품은 어떤 이야기를 담고 있을까요? 시청자에게 전달하고자 하는 바를 요약합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="work-card">
+                            <img src="https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="작품 4 이미지">
+                            <div class="work-card-content">
+                                <h3 class="text-xl font-semibold mb-2 text-white">프로젝트 타이틀 4</h3>
+                                <p class="text-gray-300 text-sm">다양한 포트폴리오를 보여주기 위한 추가 슬라이드입니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination mt-8 relative"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
     </section>
 
+    <section id="about" class="py-16 lg:py-24 bg-black bg-opacity-20"> <div class="container mx-auto px-6 lg:px-8 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-8 text-white" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">About Us</h2>
+            <p class="text-lg text-gray-200 max-w-3xl mx-auto leading-relaxed">
+                CHINE 필름은 창의적인 아이디어와 뛰어난 영상 기술을 바탕으로 고객의 비전을 현실로 만드는 영상 제작 전문 팀입니다. 우리는 광고, 영화, 뮤직비디오, 다큐멘터리 등 다양한 분야에서 최고의 결과물을 만들기 위해 노력합니다. 각 프로젝트에 대한 깊은 이해와 열정으로 감동과 메시지를 담아냅니다.
+            </p>
+            </div>
+    </section>
+
+    <section id="contact" class="py-16 lg:py-24">
+         <div class="container mx-auto px-6 lg:px-8 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-8 text-white" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">Contact Us</h2>
+            <p class="text-lg text-gray-200 max-w-3xl mx-auto mb-8">
+                프로젝트 문의나 협업 제안이 있으시면 언제든지 연락주십시오. 최선을 다해 답변드리겠습니다.
+            </p>
+            <a href="mailto:contact@chinefilm.com" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-8 rounded-lg text-lg transition duration-300">
+                이메일 문의하기
+            </a>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
+        // 헤더 스크롤 효과
         const header = document.getElementById('main-header');
         window.addEventListener('scroll', function() {
             if (window.scrollY > 50) {
@@ -133,6 +231,7 @@
             }
         });
 
+        // 모바일 메뉴 토글
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileMenuIcon = mobileMenuButton.querySelector('i');
@@ -148,17 +247,79 @@
             }
         });
 
+        // 네비게이션 링크 클릭 시
         const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section'); // 모든 섹션 선택
+
+        function changeNavOnScroll() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - header.offsetHeight - 100) { // 헤더 높이와 약간의 여유 고려
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', changeNavOnScroll); // 스크롤 시 네비게이션 상태 변경
+
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
-                navLinks.forEach(l => l.classList.remove('active'));
-                this.classList.add('active');
+                // 부드러운 스크롤 (옵션)
+                // e.preventDefault(); // 기본 앵커 동작 막기
+                // const targetId = this.getAttribute('href');
+                // const targetSection = document.querySelector(targetId);
+                // window.scrollTo({
+                //     top: targetSection.offsetTop - header.offsetHeight, // 헤더 높이만큼 빼주기
+                //     behavior: 'smooth'
+                // });
+
+
+                // 모바일 메뉴 닫기
                 if (!mobileMenu.classList.contains('hidden')) {
                     mobileMenu.classList.add('hidden');
                     mobileMenuIcon.classList.remove('fa-times');
                     mobileMenuIcon.classList.add('fa-bars');
                 }
+                // 클릭 시에도 활성 상태 바로 변경 (스크롤 이벤트가 약간 늦을 수 있으므로)
+                navLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
             });
+        });
+
+
+        // Swiper 초기화
+        var workSwiper = new Swiper(".workSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            grabCursor: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                // 768px 이상일 때
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30
+                },
+                // 1024px 이상일 때
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 40
+                }
+            }
         });
     </script>
 
