@@ -1,341 +1,189 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chine 필름 포트폴리오</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-  <style>
-    /* Example: Customizing Swiper navigation button colors if needed */
-    .swiper-button-next,
-    .swiper-button-prev {
-      color: #3b82f6; /* Tailwind's blue-500 */
-    }
-    .swiper-button-next:after,
-    .swiper-button-prev:after {
-      font-size: 1.5rem; /* Adjust size */
-    }
-    .hero-bg {
-      background-image: url('https://images.unsplash.com/photo-1517604931442-7e0c83473c70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
-      background-size: cover;
-      background-position: center;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinematic Visual Pulse - 복제</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif; /* 기본 폰트 설정 */
+            background-color: #111111; /* 원본 사이트의 주된 어두운 배경색 */
+            color: #ffffff; /* 기본 텍스트 색상 */
+        }
+
+        /* 헤더 스크롤 시 배경 변경 스타일 */
+        .header-scrolled {
+            background-color: rgba(0, 0, 0, 0.85); /* 반투명 검정 */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 히어로 섹션 비디오 위에 오버레이 */
+        .hero-overlay::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* 어두운 오버레이 */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 네비게이션 활성 링크 스타일 (예시) */
+        .nav-link.active {
+            color: #FFA500; /* 주황색 계열 강조 */
+        }
+
+        /* 스크롤 다운 애니메이션 */
+        .scroll-down-indicator {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-15px);
+            }
+            60% {
+                transform: translateY(-7px);
+            }
+        }
+    </style>
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans">
+<body class="antialiased">
 
-  <header class="bg-white shadow-md sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <div class="flex items-center">
-          <a href="#" class="text-2xl font-bold text-blue-600">Chine 필름</a>
-        </div>
-        <nav class="hidden md:flex space-x-4">
-          <a href="#home" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">홈</a>
-          <a href="#about" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">소개</a>
-          <a href="#works" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">작업물</a>
-          <a href="#services" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">서비스</a>
-          <a href="#contact" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">문의</a>
-        </nav>
-        <div class="md:hidden">
-          <button id="mobile-menu-button" class="text-gray-600 hover:text-blue-600 focus:outline-none">
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-    <div id="mobile-menu" class="md:hidden hidden">
-      <a href="#home" class="block text-gray-600 hover:bg-blue-50 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">홈</a>
-      <a href="#about" class="block text-gray-600 hover:bg-blue-50 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">소개</a>
-      <a href="#works" class="block text-gray-600 hover:bg-blue-50 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">작업물</a>
-      <a href="#services" class="block text-gray-600 hover:bg-blue-50 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">서비스</a>
-      <a href="#contact" class="block text-gray-600 hover:bg-blue-50 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">문의</a>
-    </div>
-  </header>
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out py-4">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-3xl font-bold text-white">CVP</a>
 
-  <section id="home" class="hero-bg text-white relative">
-    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-48 text-center relative z-10">
-      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
-        Chine 필름: <span class="text-blue-400">상상을 현실로 만드는</span> 영상 제작
-      </h1>
-      <p class="text-lg sm:text-xl text-gray-200 mb-10 max-w-2xl mx-auto">
-        독창적인 아이디어와 뛰어난 기술력으로 최고의 영상을 만듭니다.
-      </p>
-      <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg text-lg transition duration-300">
-        프로젝트 문의하기
-      </a>
-    </div>
-  </section>
+                <nav class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                    <a href="#home" class="nav-link active text-gray-300 hover:text-white transition-colors">HOME</a>
+                    <a href="#about" class="nav-link text-gray-300 hover:text-white transition-colors">ABOUT</a>
+                    <a href="#works" class="nav-link text-gray-300 hover:text-white transition-colors">WORKS</a>
+                    <a href="#contact" class="nav-link text-gray-300 hover:text-white transition-colors">CONTACT</a>
+                </nav>
 
-  <section id="about" class="py-16 sm:py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-light text-gray-900">About Chine Film</h2>
-        <p class="mt-4 text-lg text-gray-600">우리는 누구인가</p>
-      </div>
-      <div class="md:flex md:items-center md:space-x-12">
-        <div class="md:w-1/2 mb-8 md:mb-0">
-          <img src="https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="About Chine Film Team" class="rounded-lg shadow-xl w-full h-auto object-cover">
-        </div>
-        <div class="md:w-1/2">
-          <h3 class="text-2xl font-semibold text-gray-800 mb-4">열정과 창의성으로 영상을 만듭니다.</h3>
-          <p class="text-gray-600 mb-4 leading-relaxed">
-            Chine 필름은 광고, 단편 영화, 뮤직 비디오, 다큐멘터리 등 다양한 영상 콘텐츠 제작을 전문으로 하는 팀입니다. 우리는 클라이언트의 비전을 이해하고, 그 비전을 넘어선 감동과 메시지를 담아내는 것을 목표로 합니다.
-          </p>
-          <p class="text-gray-600 mb-4 leading-relaxed">
-            최신 장비와 숙련된 전문가들의 협업을 통해 기획부터 촬영, 편집, 최종 결과물 납품까지 모든 과정을 세심하게 관리하여 최고의 만족을 드립니다.
-          </p>
-          <ul class="list-disc list-inside text-gray-600 space-y-1">
-            <li>창의적인 스토리텔링</li>
-            <li>고품질 영상 제작 기술</li>
-            <li>클라이언트 맞춤형 솔루션</li>
-            <li>정확한 납기 준수</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="works" class="py-16 sm:py-20 bg-gray-50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl md:text-4xl font-light text-center mb-12 text-black">
-        Our Works
-      </h2>
-      <div class="relative px-4 sm:px-12"> <div class="swiper mySwiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="group relative overflow-hidden rounded-lg shadow-lg bg-white hover:shadow-xl transition-all duration-300 hover:scale-105">
-                <img 
-                  src="https://images.unsplash.com/photo-1505480406110-70e46c09arg4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                  alt="단편 영화 '여정'"
-                  class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
-                  <div class="text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
-                    <span class="inline-block px-3 py-1 bg-white bg-opacity-20 rounded-full text-xs mb-2">
-                      단편 영화
-                    </span>
-                    <h3 class="text-xl font-semibold mb-2">여정 (The Journey)</h3>
-                    <p class="text-sm">삶의 의미를 찾아가는 한 남자의 이야기</p>
-                  </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#" aria-label="Vimeo" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-vimeo-v fa-lg"></i></a>
+                    <a href="#" aria-label="Instagram" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="#" aria-label="Facebook" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-facebook-f fa-lg"></i></a>
                 </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="group relative overflow-hidden rounded-lg shadow-lg bg-white hover:shadow-xl transition-all duration-300 hover:scale-105">
-                <img 
-                  src="https://images.unsplash.com/photo-1607009979806-6470999b7891?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                  alt="음료 광고 '상쾌함'"
-                  class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
-                  <div class="text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
-                    <span class="inline-block px-3 py-1 bg-white bg-opacity-20 rounded-full text-xs mb-2">
-                      광고
-                    </span>
-                    <h3 class="text-xl font-semibold mb-2">상쾌함 (Refresh)</h3>
-                    <p class="text-sm">새로운 음료 브랜드 런칭 광고</p>
-                  </div>
+
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white focus:outline-none">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </button>
                 </div>
-              </div>
             </div>
-            <div class="swiper-slide">
-              <div class="group relative overflow-hidden rounded-lg shadow-lg bg-white hover:shadow-xl transition-all duration-300 hover:scale-105">
-                <img 
-                  src="https://images.unsplash.com/photo-1511300636428-5654b039502c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                  alt="뮤직 비디오 '도시의 밤'"
-                  class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
-                  <div class="text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
-                    <span class="inline-block px-3 py-1 bg-white bg-opacity-20 rounded-full text-xs mb-2">
-                      뮤직 비디오
-                    </span>
-                    <h3 class="text-xl font-semibold mb-2">도시의 밤 (City Night)</h3>
-                    <p class="text-sm">인디밴드 '블루문'의 신곡 MV</p>
-                  </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-90 py-4">
+            <nav class="flex flex-col items-center space-y-4">
+                <a href="#home" class="nav-link active text-gray-300 hover:text-white transition-colors">HOME</a>
+                <a href="#about" class="nav-link text-gray-300 hover:text-white transition-colors">ABOUT</a>
+                <a href="#works" class="nav-link text-gray-300 hover:text-white transition-colors">WORKS</a>
+                <a href="#contact" class="nav-link text-gray-300 hover:text-white transition-colors">CONTACT</a>
+                <div class="flex space-x-4 pt-4">
+                    <a href="#" aria-label="Vimeo" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-vimeo-v"></i></a>
+                    <a href="#" aria-label="Instagram" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-facebook-f"></i></a>
                 </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="group relative overflow-hidden rounded-lg shadow-lg bg-white hover:shadow-xl transition-all duration-300 hover:scale-105">
-                <img 
-                  src="https://images.unsplash.com/photo-1580130281326-a63fcf1270ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                  alt="다큐멘터리 '장인의 손길'"
-                  class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
-                  <div class="text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
-                    <span class="inline-block px-3 py-1 bg-white bg-opacity-20 rounded-full text-xs mb-2">
-                      다큐멘터리
-                    </span>
-                    <h3 class="text-xl font-semibold mb-2">장인의 손길 (Artisan's Touch)</h3>
-                    <p class="text-sm">전통 공예가의 삶과 철학 조명</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-             <div class="swiper-slide">
-              <div class="group relative overflow-hidden rounded-lg shadow-lg bg-white hover:shadow-xl transition-all duration-300 hover:scale-105">
-                <img 
-                  src="https://images.unsplash.com/photo-1533690095493-31006cc2491f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                  alt="기업 홍보 영상"
-                  class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
-                  <div class="text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
-                    <span class="inline-block px-3 py-1 bg-white bg-opacity-20 rounded-full text-xs mb-2">
-                      기업 홍보
-                    </span>
-                    <h3 class="text-xl font-semibold mb-2">이노베이트 솔루션즈</h3>
-                    <p class="text-sm">IT 기업의 비전과 가치 소개</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
+            </nav>
         </div>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <section id="services" class="py-16 sm:py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-light text-gray-900">Our Services</h2>
-        <p class="mt-4 text-lg text-gray-600">우리가 제공하는 서비스</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <div class="text-blue-600 mb-4">
-            <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-          </div>
-          <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">영상 기획 및 제작</h3>
-          <p class="text-gray-600 text-sm text-center">
-            아이디어 구상부터 스토리보드, 촬영, 편집까지 통합적인 영상 제작 솔루션을 제공합니다. 광고, 홍보, 교육, 다큐멘터리 등 모든 장르를 다룹니다.
-          </p>
-        </div>
-        <div class="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <div class="text-blue-600 mb-4">
-             <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-          </div>
-          <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">포스트 프로덕션</h3>
-          <p class="text-gray-600 text-sm text-center">
-            전문적인 영상 편집, 색 보정, 사운드 디자인, VFX 및 모션 그래픽 서비스를 통해 영상의 완성도를 한층 높여드립니다.
-          </p>
-        </div>
-        <div class="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <div class="text-blue-600 mb-4">
-            <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path></svg>
-          </div>
-          <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">드론 촬영</h3>
-          <p class="text-gray-600 text-sm text-center">
-            고해상도 드론 촬영을 통해 역동적이고 아름다운 항공 영상을 제공합니다. 부동산, 관광, 행사 기록 등 다양한 분야에 활용 가능합니다.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+    <section id="home" class="h-screen flex items-center justify-center relative overflow-hidden hero-overlay">
+        <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
+            <source src="https://videos.pexels.com/video-files/854700/854700-hd_1920_1080_25fps.mp4" type="video/mp4">
+            죄송합니다. 현재 브라우저에서는 비디오를 지원하지 않습니다.
+        </video>
 
-  <section id="contact" class="py-16 sm:py-20 bg-gray-800 text-gray-200">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-light text-white">Contact Us</h2>
-        <p class="mt-4 text-lg text-gray-400">궁금한 점이 있으신가요? 언제든지 문의주세요.</p>
-      </div>
-      <div class="max-w-2xl mx-auto bg-white text-gray-800 p-8 sm:p-10 rounded-lg shadow-2xl">
-        <form action="#" method="POST">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-            <div>
-              <label for="name" class="block text-sm font-medium text-gray-700 mb-1">이름</label>
-              <input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="홍길동">
+        <div class="hero-content text-center px-4">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white uppercase tracking-wider leading-tight mb-8" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">
+                움직임으로<br class="md:hidden"> <span style="color: #FFA500;">감동</span>을 창조하다
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-200 mb-12 max-w-2xl mx-auto" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">
+                우리는 당신의 이야기를 시각적으로 가장 강력하게 전달합니다.
+            </p>
+
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 scroll-down-indicator">
+                <a href="#about" class="text-white hover:text-gray-300 transition-colors">
+                    <i class="fas fa-chevron-down fa-2x"></i>
+                    <span class="block text-xs mt-1">SCROLL DOWN</span>
+                </a>
             </div>
-            <div>
-              <label for="email" class="block text-sm font-medium text-gray-700 mb-1">이메일</label>
-              <input type="email" name="email" id="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="your@email.com">
-            </div>
-          </div>
-          <div class="mb-6">
-            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">제목</label>
-            <input type="text" name="subject" id="subject" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="프로젝트 문의 드립니다.">
-          </div>
-          <div class="mb-6">
-            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">메시지</label>
-            <textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="문의 내용을 상세히 적어주세요."></textarea>
-          </div>
-          <div class="text-center">
-            <button type="submit" class="w-full sm:w-auto inline-flex justify-center py-3 px-8 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
-              메시지 보내기
-            </button>
-          </div>
-        </form>
-      </div>
-       <div class="mt-12 text-center text-gray-400">
-            <p>또는 다음 연락처로 직접 문의하실 수 있습니다:</p>
-            <p class="mt-2">Email: <a href="mailto:contact@chinefilm.com" class="text-blue-400 hover:text-blue-300">contact@chinefilm.com</a></p>
-            <p>Phone: <a href="tel:+82-10-1234-5678" class="text-blue-400 hover:text-blue-300">010-1234-5678</a></p>
         </div>
-    </div>
-  </section>
+    </section>
 
-  <footer class="bg-gray-900 text-gray-400 py-8">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <p>&copy; 2024 Chine Film. All Rights Reserved.</p>
-      <p class="text-sm mt-1">열정으로 만드는 최고의 영상, Chine 필름</p>
-      </div>
-  </footer>
+    <section id="about" class="h-screen bg-gray-800 flex items-center justify-center">
+        <h2 class="text-4xl text-white">About 섹션 (예정)</h2>
+    </section>
+    <section id="works" class="h-screen bg-gray-700 flex items-center justify-center">
+        <h2 class="text-4xl text-white">Works 섹션 (예정)</h2>
+    </section>
+     <section id="contact" class="h-screen bg-gray-800 flex items-center justify-center">
+        <h2 class="text-4xl text-white">Contact 섹션 (예정)</h2>
+    </section>
 
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <script>
-    // Swiper Initialization
-    var swiper = new Swiper(".mySwiper", {
-      slidesPerView: 1,
-      spaceBetween: 20,
-      loop: true,
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      breakpoints: {
-        // when window width is >= 640px (Tailwind's sm breakpoint)
-        640: {
-          slidesPerView: 1,
-          spaceBetween: 20
-        },
-        // when window width is >= 768px (Tailwind's md breakpoint)
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 30
-        },
-        // when window width is >= 1024px (Tailwind's lg breakpoint)
-        1024: {
-          slidesPerView: 3,
-          spaceBetween: 30
-        },
-      },
-    });
 
-    // Mobile Menu Toggle
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navLinks = mobileMenu.querySelectorAll('a');
-
-    mobileMenuButton.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-
-    // Close mobile menu when a link is clicked (for single-page navigation)
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
+    <script>
+        // 헤더 스크롤 효과
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
         });
-    });
-  </script>
+
+        // 모바일 메뉴 토글
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuIcon = mobileMenuButton.querySelector('i');
+
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenuIcon.classList.remove('fa-times');
+                mobileMenuIcon.classList.add('fa-bars');
+            } else {
+                mobileMenuIcon.classList.remove('fa-bars');
+                mobileMenuIcon.classList.add('fa-times');
+            }
+        });
+
+        // 네비게이션 링크 클릭 시 활성 스타일 변경 (간단한 예시)
+        // 실제로는 스크롤 위치에 따라 동적으로 변경하는 로직이 더 좋습니다.
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // 다른 링크에서 active 클래스 제거
+                navLinks.forEach(l => l.classList.remove('active'));
+                // 클릭된 링크에 active 클래스 추가
+                this.classList.add('active');
+
+                // 모바일 메뉴가 열려있으면 닫기
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuIcon.classList.remove('fa-times');
+                    mobileMenuIcon.classList.add('fa-bars');
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
