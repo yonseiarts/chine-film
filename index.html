@@ -13,7 +13,7 @@
 
     <style>
         body {
-            font-family: 'Poppins', 'Noto Sans KR', sans-serif; /* Noto Sans KR 추가 */
+            font-family: 'Poppins', 'Noto Sans KR', sans-serif;
             background: linear-gradient(to bottom, #FFAC70, #FF5733, #C70039, #900C3F, #581845, #111111 70%);
             background-size: cover;
             background-position: center;
@@ -26,11 +26,40 @@
             background-color: rgba(0, 0, 0, 0.85);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
+
+        /* 히어로 섹션 배경 영상 (YouTube API 용) */
+        #hero-video-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            pointer-events: none; /* 영상 위 클릭 방지 */
+            overflow: hidden;
+        }
+        #youtube-player { /* iframe이 삽입될 div */
+            width: 100%;
+            height: 100%;
+            /* 화면을 꽉 채우고, 영상 비율 유지를 위해 scale 조정 (필요시 값 변경) */
+            /* 이 부분은 영상의 원래 비율에 따라 조정이 필요할 수 있습니다 */
+             position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%) scale(1.5); /* scale 값으로 확대 조정 */
+
+        }
+
         .hero-overlay::before {
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-color: rgba(0, 0, 0, 0.4); /* 오버레이 약간 더 진하게 */
+            background-color: rgba(0, 0, 0, 0.45); /* 오버레이 약간 더 진하게 */
             z-index: 1;
         }
         .hero-content {
@@ -38,7 +67,7 @@
             z-index: 2;
         }
         .nav-link.active {
-            color: #FFA500; /* 주황색 계열 강조 (Tailwind orange-500) */
+            color: #FFA500;
         }
         .scroll-down-indicator {
             animation: bounce 2s infinite;
@@ -49,11 +78,11 @@
             60% { transform: translateY(-7px); }
         }
         .work-card {
-            background-color: rgba(255, 255, 255, 0.08); /* 카드 배경 약간 더 투명하게 */
+            background-color: rgba(255, 255, 255, 0.08);
             border-radius: 0.5rem;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            backdrop-filter: blur(5px); /* 카드 배경 블러 효과 (선택 사항) */
+            backdrop-filter: blur(5px);
         }
         .work-card:hover {
             transform: translateY(-5px);
@@ -61,22 +90,21 @@
         }
         .work-card img {
             width: 100%;
-            height: 220px; /* 카드 이미지 높이 조절 */
+            height: 220px;
             object-fit: cover;
         }
         .work-card-content {
-            padding: 1.25rem; /* 패딩 조절 */
+            padding: 1.25rem;
         }
         .swiper-button-next, .swiper-button-prev {
             color: #FFA500;
         }
         .swiper-button-next::after, .swiper-button-prev::after {
-            font-size: 1.75rem; /* 아이콘 크기 조절 */
+            font-size: 1.75rem;
         }
         .swiper-pagination-bullet-active {
             background-color: #FFA500;
         }
-        /* 섹션 제목 스타일 통일 */
         .section-title {
             text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
         }
@@ -122,10 +150,10 @@
     </header>
 
     <section id="home" class="h-screen flex items-center justify-center relative overflow-hidden hero-overlay">
-        <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
-            <source src="https://videos.pexels.com/video-files/854700/854700-hd_1920_1080_25fps.mp4" type="video/mp4">
-            죄송합니다. 현재 브라우저에서는 비디오를 지원하지 않습니다.
-        </video>
+        <div id="hero-video-background">
+            <div id="youtube-player"></div>
+        </div>
+
         <div class="hero-content text-center px-4">
             <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white uppercase tracking-wider leading-tight mb-4 md:mb-8" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">
                 혁신적인<br class="md:hidden"> <span style="color: #FFA500;">영상</span> 제작
@@ -192,7 +220,7 @@
                             </div>
                         </div>
                     </div>
-                     <div class="swiper-slide">
+                    <div class="swiper-slide">
                         <div class="work-card">
                             <img src="https://images.pexels.com/photos/196652/pexels-photo-196652.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="작품 5 이미지">
                             <div class="work-card-content">
@@ -245,6 +273,74 @@
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
+        // YouTube Iframe API 로드
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        // 중요: 아래 'VIDEO_ID_HERE' 부분을 실제 YouTube 비디오 ID로 교체해야 합니다.
+        // 사용자 요청 URL https://youtu.be/gNkMzUyWkFo?si=dVmpEtDwJU9RK1xt 에서 ID를 '2'로 가정합니다.
+        // 실제로는 유효한 YouTube 영상 ID (예: 'M7lc1UVf-VE')를 사용해야 합니다.
+        var youtubeVideoId = '2'; // <--- 이 부분을 실제 YouTube 비디오 ID로 변경하세요!
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                videoId: youtubeVideoId,
+                playerVars: {
+                    'autoplay': 1,        // 자동 재생
+                    'controls': 0,        // 컨트롤 숨김
+                    'showinfo': 0,        // 비디오 정보 숨김
+                    'modestbranding': 1,  // YouTube 로고 최소화
+                    'loop': 1,            // 반복 재생
+                    'playlist': youtubeVideoId, // 반복 재생을 위해 videoId 다시 전달
+                    'fs': 0,              // 전체 화면 버튼 숨김
+                    'cc_load_policy': 0,  // 자막 숨김
+                    'iv_load_policy': 3,  // 특수효과 노트 숨김
+                    'autohide': 0,        // 비디오 진행 표시줄 항상 표시 (컨트롤 숨김으로 무의미할 수 있음)
+                    'mute': 1,             // 자동 재생을 위해 음소거 필수!
+                    'origin': window.location.origin // CORS 관련, 현재 도메인 추가
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            event.target.playVideo(); // 음소거 상태로 자동 재생
+            // 추가적인 화면 비율 조정 로직 (선택 사항)
+            // adjustVideoRatio(); 
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                player.seekTo(0); // 비디오가 끝나면 처음으로 돌아가 다시 재생 (loop와 함께 사용)
+            }
+        }
+        
+        // (선택 사항) 화면 크기 변경 시 비디오 비율 조정 함수
+        // function adjustVideoRatio() {
+        //     var $video = $('#youtube-player'); // jQuery 사용 예시, 순수 JS로 변경 가능
+        //     var $container = $('#hero-video-background');
+        //     var containerWidth = $container.width();
+        //     var containerHeight = $container.height();
+        //     var videoRatio = 16/9; // 또는 player.getPlaybackQuality() 등으로 실제 비율 가져오기
+
+        //     if (containerWidth / videoRatio < containerHeight) {
+        //         $video.width(containerHeight * videoRatio);
+        //         $video.height(containerHeight);
+        //     } else {
+        //         $video.width(containerWidth);
+        //         $video.height(containerWidth / videoRatio);
+        //     }
+        // }
+        // window.addEventListener('resize', adjustVideoRatio);
+
+
+        // --- 나머지 JavaScript (이전과 동일) ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileMenuIcon = mobileMenuButton.querySelector('i');
@@ -260,19 +356,18 @@
         const mainHeader = document.getElementById('main-header');
 
         function changeNavOnScroll() {
-            let current = 'home'; // 기본값 설정
-            const headerHeight = mainHeader ? mainHeader.offsetHeight : 70; // 헤더 높이, 기본 70px
+            let current = 'home';
+            const headerHeight = mainHeader ? mainHeader.offsetHeight : 70;
             
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - headerHeight - 50) { // 약간의 오프셋 추가
+                if (pageYOffset >= sectionTop - headerHeight - 50) {
                     current = section.getAttribute('id');
                 }
             });
 
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                // href 속성이 존재하고, # 제거한 값이 current와 일치할 때 active 클래스 추가
                 if (link.getAttribute('href') && link.getAttribute('href').substring(1) === current) {
                     link.classList.add('active');
                 }
@@ -281,53 +376,44 @@
         
         window.addEventListener('scroll', changeNavOnScroll);
         document.addEventListener('DOMContentLoaded', () => {
-             changeNavOnScroll(); // 페이지 로드 시 초기 상태 설정
-             // 로고 클릭 시 홈으로 스크롤 및 네비게이션 업데이트
+             changeNavOnScroll();
             const logoLink = document.querySelector('#main-header a[href="#home"]');
             if(logoLink) {
                 logoLink.addEventListener('click', (e) => {
                     e.preventDefault();
                     document.querySelector('#home').scrollIntoView({ behavior: 'smooth' });
-                    // 네비게이션 상태 업데이트
                     navLinks.forEach(l => l.classList.remove('active'));
                     document.querySelector('.nav-link[href="#home"]').classList.add('active');
                 });
             }
         });
 
-
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
-                // 부드러운 스크롤 (기본 앵커 동작 대신 사용)
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 const targetSection = document.querySelector(targetId);
                 if (targetSection) {
                     const headerHeight = mainHeader ? mainHeader.offsetHeight : 70;
                     window.scrollTo({
-                        top: targetSection.offsetTop - headerHeight + 1, // +1로 미세조정
+                        top: targetSection.offsetTop - headerHeight + 1,
                         behavior: 'smooth'
                     });
                 }
-
                 if (!mobileMenu.classList.contains('hidden')) {
                     mobileMenu.classList.add('hidden');
                     mobileMenuIcon.classList.remove('fa-times');
                     mobileMenuIcon.classList.add('fa-bars');
                 }
-                // 클릭 시 즉시 active 상태 변경 (스크롤 이벤트보다 빠름)
-                // navLinks.forEach(l => l.classList.remove('active'));
-                // this.classList.add('active');
-                // 스크롤 후 changeNavOnScroll이 처리하도록 위 라인은 주석처리하거나 삭제
             });
         });
 
         var workSwiper = new Swiper(".workSwiper", {
             slidesPerView: 1,
-            spaceBetween: 20, // 간격 약간 줄임
+            spaceBetween: 20,
             loop: true,
             grabCursor: true,
-            centeredSlides: false, // 모바일에서는 중앙 정렬 안함
+            centeredSlides: false,
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,
@@ -337,15 +423,8 @@
                 prevEl: ".swiper-button-prev",
             },
             breakpoints: {
-                640: { // sm
-                    slidesPerView: 2,
-                    spaceBetween: 25
-                },
-                1024: { // lg
-                    slidesPerView: 3,
-                    spaceBetween: 30,
-                    centeredSlides: true, // 큰 화면에서는 중앙 슬라이드 강조
-                }
+                640: { slidesPerView: 2, spaceBetween: 25 },
+                1024: { slidesPerView: 3, spaceBetween: 30, centeredSlides: true, }
             }
         });
     </script>
