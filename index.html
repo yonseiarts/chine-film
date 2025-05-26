@@ -12,18 +12,14 @@
 
     <style>
         body {
-            font-family: 'Poppins', sans-serif; /* 기본 폰트 설정 */
-            background-color: #111111; /* 원본 사이트의 주된 어두운 배경색 */
-            color: #ffffff; /* 기본 텍스트 색상 */
+            font-family: 'Poppins', sans-serif;
+            background-color: #111111;
+            color: #ffffff;
         }
-
-        /* 헤더 스크롤 시 배경 변경 스타일 */
         .header-scrolled {
-            background-color: rgba(0, 0, 0, 0.85); /* 반투명 검정 */
+            background-color: rgba(0, 0, 0, 0.85);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
-
-        /* 히어로 섹션 비디오 위에 오버레이 */
         .hero-overlay::before {
             content: "";
             position: absolute;
@@ -31,34 +27,23 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5); /* 어두운 오버레이 */
+            background-color: rgba(0, 0, 0, 0.5);
             z-index: 1;
         }
-
         .hero-content {
             position: relative;
             z-index: 2;
         }
-
-        /* 네비게이션 활성 링크 스타일 (예시) */
         .nav-link.active {
-            color: #FFA500; /* 주황색 계열 강조 */
+            color: #FFA500;
         }
-
-        /* 스크롤 다운 애니메이션 */
         .scroll-down-indicator {
             animation: bounce 2s infinite;
         }
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-15px);
-            }
-            60% {
-                transform: translateY(-7px);
-            }
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-7px); }
         }
     </style>
 </head>
@@ -106,13 +91,14 @@
 
     <section id="home" class="h-screen flex items-center justify-center relative overflow-hidden hero-overlay">
         <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
+            <source src="https://youtu.be/gNkMzUyWkFo?si=Au2rOjpWh5Zocyac" type="video/mp4"> 
             <source src="https://videos.pexels.com/video-files/854700/854700-hd_1920_1080_25fps.mp4" type="video/mp4">
             죄송합니다. 현재 브라우저에서는 비디오를 지원하지 않습니다.
         </video>
 
         <div class="hero-content text-center px-4">
             <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white uppercase tracking-wider leading-tight mb-8" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">
-               Essence<br class="md:hidden"> <span style="color: #FFA500;">in</span>Secens
+                Essence<br class="md:hidden"> <span style="color: #FFA500;">in</span> Scenes
             </h1>
             <p class="text-lg sm:text-xl text-gray-200 mb-12 max-w-2xl mx-auto" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">
                 장면의 본질
@@ -137,9 +123,7 @@
         <h2 class="text-4xl text-white">Contact 섹션 (예정)</h2>
     </section>
 
-
     <script>
-        // 헤더 스크롤 효과
         const header = document.getElementById('main-header');
         window.addEventListener('scroll', function() {
             if (window.scrollY > 50) {
@@ -149,7 +133,6 @@
             }
         });
 
-        // 모바일 메뉴 토글
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileMenuIcon = mobileMenuButton.querySelector('i');
@@ -165,17 +148,11 @@
             }
         });
 
-        // 네비게이션 링크 클릭 시 활성 스타일 변경 (간단한 예시)
-        // 실제로는 스크롤 위치에 따라 동적으로 변경하는 로직이 더 좋습니다.
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
-                // 다른 링크에서 active 클래스 제거
                 navLinks.forEach(l => l.classList.remove('active'));
-                // 클릭된 링크에 active 클래스 추가
                 this.classList.add('active');
-
-                // 모바일 메뉴가 열려있으면 닫기
                 if (!mobileMenu.classList.contains('hidden')) {
                     mobileMenu.classList.add('hidden');
                     mobileMenuIcon.classList.remove('fa-times');
