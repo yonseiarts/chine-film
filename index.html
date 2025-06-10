@@ -1,82 +1,212 @@
-/* --- 기존 CSS 내용 유지 --- */
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEON Rated - Films & Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlalHwF4v15z9fMv05XlM7tE/g1+k1J27F2p+GgGf0r+NqG7p7I6iXp3n3/qG8t0Pq7k5K3/y1q3o0fA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <a href="/" class="logo">
+                <img src="https://via.placeholder.com/150x50?text=NEON+Logo" alt="NEON Logo">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#films">FILMS</a></li>
+                    <li><a href="#shop">SHOP</a></li>
+                    <li><a href="#news">NEWS</a></li>
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="#" class="button tickets-button">Get Tickets</a>
+                <a href="#" class="search-icon"><i class="fas fa-search"></i></a>
+                <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+        <div class="mobile-menu-overlay">
+            <button class="close-menu"><i class="fas fa-times"></i></button>
+            <nav class="mobile-nav">
+                <ul>
+                    <li><a href="#films">FILMS</a></li>
+                    <li><a href="#shop">SHOP</a></li>
+                    <li><a href="#news">NEWS</a></li>
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-/* 헤더 스크롤 효과 (배경색 변경, 그림자 추가) */
-.header.scrolled {
-    background-color: rgba(0, 0, 0, 0.9); /* 스크롤 시 더 진한 배경 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
+    <section id="hero-slider" class="swiper-container hero-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide slide-1">
+                <div class="slide-content">
+                    <h1>Featured Film Title One</h1>
+                    <p>A compelling tagline or short description for film one.</p>
+                    <a href="#" class="button primary-button">Watch Trailer</a>
+                </div>
+            </div>
+            <div class="swiper-slide slide-2">
+                <div class="slide-content">
+                    <h1>Featured Film Title Two</h1>
+                    <p>Discover the next great story.</p>
+                    <a href="#" class="button primary-button">Learn More</a>
+                </div>
+            </div>
+            <div class="swiper-slide slide-3">
+                <div class="slide-content">
+                    <h1>Featured Film Title Three</h1>
+                    <p>Experience the latest from NEON.</p>
+                    <a href="#" class="button primary-button">Get Tickets</a>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </section>
 
-/* 히어로 섹션 콘텐츠 애니메이션 */
-.hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    opacity: 0; /* 초기에는 숨김 */
-    transform: translateY(20px); /* 아래에서 위로 올라오도록 */
-    transition: opacity 1s ease-out, transform 1s ease-out; /* 부드러운 전환 */
-}
+    <main>
+        <section id="films" class="films-section section-padding">
+            <div class="container">
+                <h2>Our Films</h2>
+                <div class="film-categories">
+                    <button class="category-button active" data-category="in-theaters">In Theaters</button>
+                    <button class="category-button" data-category="coming-soon">Coming Soon</button>
+                    <button class="category-button" data-category="watch-now">Watch Now</button>
+                    <button class="category-button" data-category="award-winners">Award Winners</button>
+                </div>
+                <div class="film-grid">
+                    <div class="film-item in-theaters">
+                        <img src="https://via.placeholder.com/300x450?text=Film+Poster+1" alt="Film 1 Poster">
+                        <h3><a href="#">The Life of Chuck</a></h3>
+                        <p>2025</p>
+                    </div>
+                    <div class="film-item watch-now award-winners">
+                        <img src="https://via.placeholder.com/300x450?text=Film+Poster+2" alt="Film 2 Poster">
+                        <h3><a href="#">Parasite</a></h3>
+                        <p>2019</p>
+                    </div>
+                    <div class="film-item watch-now award-winners">
+                        <img src="https://via.placeholder.com/300x450?text=Film+Poster+3" alt="Film 3 Poster">
+                        <h3><a href="#">Anora</a></h3>
+                        <p>2024</p>
+                    </div>
+                    <div class="film-item coming-soon">
+                        <img src="https://via.placeholder.com/300x450?text=Film+Poster+4" alt="Film 4 Poster">
+                        <h3><a href="#">Longlegs</a></h3>
+                        <p>2024</p>
+                    </div>
+                    <div class="film-item watch-now">
+                        <img src="https://via.placeholder.com/300x450?text=Film+Poster+5" alt="Film 5 Poster">
+                        <h3><a href="#">The Monkey</a></h3>
+                        <p>2025</p>
+                    </div>
+                    <div class="film-item coming-soon">
+                        <img src="https://via.placeholder.com/300x450?text=Film+Poster+6" alt="Film 6 Poster">
+                        <h3><a href="#">Together</a></h3>
+                        <p>2025</p>
+                    </div>
+                    </div>
+                <div class="text-center">
+                    <a href="#" class="button secondary-button">View All Films</a>
+                </div>
+            </div>
+        </section>
 
-.hero-section.loaded .hero-content {
-    opacity: 1; /* 로드 시 나타남 */
-    transform: translateY(0);
-}
+        <section id="shop" class="shop-section section-padding bg-light">
+            <div class="container">
+                <h2>NEON Shop</h2>
+                <div class="product-grid">
+                    <div class="product-item">
+                        <img src="https://via.placeholder.com/300x300?text=Product+Image+A" alt="Product A">
+                        <h3><a href="#">Parasite Hoodie</a></h3>
+                        <p class="price">$80.00</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://via.placeholder.com/300x300?text=Product+Image+B" alt="Product B">
+                        <h3><a href="#">Anora T-Shirt</a></h3>
+                        <p class="price">$30.00</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://via.placeholder.com/300x300?text=Product+Image+C" alt="Product C">
+                        <h3><a href="#">Collector's Item</a></h3>
+                        <p class="price">$50.00</p>
+                    </div>
+                    </div>
+                <div class="text-center">
+                    <a href="#" class="button secondary-button">Explore Full Collection</a>
+                </div>
+            </div>
+        </section>
 
-/* 모든 섹션의 콘텐츠 나타나는 애니메이션 (스크롤 시) */
-.section-padding h2,
-.film-grid, .product-grid,
-.film-categories,
-.newsletter-section h2,
-.newsletter-section p,
-.newsletter-form {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
+        <section id="newsletter" class="newsletter-section section-padding bg-dark">
+            <div class="container text-center">
+                <h2>Stay Updated</h2>
+                <p>Sign up for our newsletter to get the latest news and updates.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="button primary-button">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
-.section-padding.in-view h2,
-.section-padding.in-view .film-grid,
-.section-padding.in-view .product-grid,
-.section-padding.in-view .film-categories,
-.section-padding.in-view .newsletter-section h2,
-.section-padding.in-view .newsletter-section p,
-.section-padding.in-view .newsletter-form {
-    opacity: 1;
-    transform: translateY(0);
-}
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-column">
+                <h4>FILMS</h4>
+                <ul>
+                    <li><a href="#">All Films</a></li>
+                    <li><a href="#">In Theaters</a></li>
+                    <li><a href="#">Coming Soon</a></li>
+                    <li><a href="#">Watch Now</a></li>
+                    <li><a href="#">Award Winners</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>SHOP</h4>
+                <ul>
+                    <li><a href="#">All Products</a></li>
+                    <li><a href="#">Apparel</a></li>
+                    <li><a href="#">Collectibles</a></li>
+                    <li><a href="#">Posters</a></li>
+                    <li><a href="#">Blu-Ray</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>COMPANY</h4>
+                <ul>
+                    <li><a href="#">About NEON</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-column social-links">
+                <h4>FOLLOW US</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 NEON. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="#">Cookie Policy</a></p>
+            </div>
+        </div>
+    </footer>
 
-/* 각 아이템의 지연 애니메이션 */
-.film-item, .product-item {
-    /* 기존 스타일 유지 */
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-/* JavaScript에서 .animated 클래스를 추가할 때 각 아이템에 지연 적용 */
-.film-item.animated, .product-item.animated {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* 소셜 아이콘 호버 효과 */
-.social-icons a i {
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.social-icons a:hover i {
-    color: var(--accent-color);
-    transform: scale(1.1); /* 확대 효과 */
-}
-
-/* 버튼 호버 시 약간의 움직임 */
-.button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-/* 카테고리 버튼 선택 효과 */
-.category-button.active {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
