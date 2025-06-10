@@ -471,3 +471,85 @@ h4 { font-size: 1.3em; }
         grid-template-columns: 1fr;
     }
 }
+/* --- 기존 CSS 내용 유지 --- */
+
+/* 헤더 스크롤 효과 (배경색 변경, 그림자 추가) */
+.header.scrolled {
+    background-color: rgba(0, 0, 0, 0.9); /* 스크롤 시 더 진한 배경 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* 히어로 섹션 콘텐츠 애니메이션 */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    opacity: 0; /* 초기에는 숨김 */
+    transform: translateY(20px); /* 아래에서 위로 올라오도록 */
+    transition: opacity 1s ease-out, transform 1s ease-out; /* 부드러운 전환 */
+}
+
+.hero-section.loaded .hero-content {
+    opacity: 1; /* 로드 시 나타남 */
+    transform: translateY(0);
+}
+
+/* 모든 섹션의 콘텐츠 나타나는 애니메이션 (스크롤 시) */
+.section-padding h2,
+.film-grid, .product-grid,
+.film-categories,
+.newsletter-section h2,
+.newsletter-section p,
+.newsletter-form {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.section-padding.in-view h2,
+.section-padding.in-view .film-grid,
+.section-padding.in-view .product-grid,
+.section-padding.in-view .film-categories,
+.section-padding.in-view .newsletter-section h2,
+.section-padding.in-view .newsletter-section p,
+.section-padding.in-view .newsletter-form {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 각 아이템의 지연 애니메이션 */
+.film-item, .product-item {
+    /* 기존 스타일 유지 */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+/* JavaScript에서 .animated 클래스를 추가할 때 각 아이템에 지연 적용 */
+.film-item.animated, .product-item.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 소셜 아이콘 호버 효과 */
+.social-icons a i {
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover i {
+    color: var(--accent-color);
+    transform: scale(1.1); /* 확대 효과 */
+}
+
+/* 버튼 호버 시 약간의 움직임 */
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* 카테고리 버튼 선택 효과 */
+.category-button.active {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
