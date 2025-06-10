@@ -3,266 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website - Coming Soon</title>
+    <title>NEON Rated - Films & Shop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlalHwF4v15z9fMv05XlM7tE/g1+k1J27F2p+GgGf0r+NqG7p7I6iXp3n3/qG8t0Pq7k5K3/y1q3o0fA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header class="header">
-        <div class="header-content">
-            <img src="https://via.placeholder.com/80x80?text=Logo" alt="Logo Placeholder" class="logo">
-            <a href="#" class="button">Get Tickets</a>
-            <div class="info-text">
-                In Theaters
+        <div class="container header-content">
+            <a href="/" class="logo">
+                <img src="https://via.placeholder.com/150x50?text=NEON+Logo" alt="NEON Logo">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#films">FILMS</a></li>
+                    <li><a href="#shop">SHOP</a></li>
+                    <li><a href="#news">NEWS</a></li>
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="#" class="button tickets-button">Get Tickets</a>
+                <a href="#" class="search-icon"><i class="fas fa-search"></i></a>
             </div>
         </div>
     </header>
 
-    <main class="main-content">
-        <section class="hero-section">
-            <div class="hero-text">
-                <h1><a href="#">Movie Title Placeholder</a></h1>
-                <p>Release Year Placeholder</p>
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="hero-image-overlay"></div>
+            <div class="container hero-content">
+                <h1>Featured Film Title Here</h1>
+                <p>A compelling tagline or short description.</p>
+                <a href="#" class="button primary-button">Watch Trailer</a>
             </div>
-            <img src="https://via.placeholder.com/100x100?text=Movie+Logo" alt="Movie Logo Placeholder" class="hero-logo">
         </section>
 
-        <section class="product-collection">
-            <h2>Collection Title Placeholder</h2>
-            <div class="product-grid">
-                <div class="product-item">
-                    <a href="#">
-                        <img src="https://via.placeholder.com/300x300?text=Product+Image+1" alt="Product 1 Placeholder">
-                    </a>
-                    <p class="product-preorder">Pre-Order Now</p>
-                    <p class="product-name">PRODUCT NAME 1</p>
-                    <p class="product-price">$XX</p>
+        <section id="films" class="films-section section-padding">
+            <div class="container">
+                <h2>Our Films</h2>
+                <div class="film-categories">
+                    <button class="category-button active">In Theaters</button>
+                    <button class="category-button">Coming Soon</button>
+                    <button class="category-button">Watch Now</button>
+                    <button class="category-button">Award Winners</button>
                 </div>
-                <div class="product-item">
-                    <a href="#">
-                        <img src="https://via.placeholder.com/300x300?text=Product+Image+2" alt="Product 2 Placeholder">
-                    </a>
-                    <p class="product-name">PRODUCT NAME 2</p>
-                    <p class="product-price">$XX</p>
-                </div>
-                <div class="product-item">
-                    <a href="#">
-                        <img src="https://via.placeholder.com/300x300?text=Product+Image+3" alt="Product 3 Placeholder">
-                    </a>
-                    <p class="product-name">PRODUCT NAME 3</p>
-                    <p class="product-price">$XX</p>
-                </div>
-                <div class="product-item">
-                    <a href="#">
-                        <img src="https://via.placeholder.com/300x300?text=Product+Image+4" alt="Product 4 Placeholder">
-                    </a>
-                    <p class="product-name">PRODUCT NAME 4</p>
-                    <p class="product-price">$XX</p>
-                </div>
-            </div>
-            <a href="#" class="button see-more-button">See More</a>
-        </section>
-
-        <section class="in-theaters-section">
-            <h2>In Theaters</h2>
-            <div class="movie-card">
-                <div class="movie-info">
-                    <p>In Theaters Info</p>
-                    <h3>Movie Title 1</h3>
+                <div class="film-grid">
+                    <div class="film-item">
+                        <img src="https://via.placeholder.com/300x450?text=Film+Poster+1" alt="Film 1 Poster">
+                        <h3><a href="#">The Life of Chuck</a></h3>
+                        <p>Release Year</p>
+                    </div>
+                    <div class="film-item">
+                        <img src="https://via.placeholder.com/300x450?text=Film+Poster+2" alt="Film 2 Poster">
+                        <h3><a href="#">Parasite</a></h3>
+                        <p>Release Year</p>
+                    </div>
+                    <div class="film-item">
+                        <img src="https://via.placeholder.com/300x450?text=Film+Poster+3" alt="Film 3 Poster">
+                        <h3><a href="#">Anora</a></h3>
+                        <p>Release Year</p>
+                    </div>
+                    <div class="film-item">
+                        <img src="https://via.placeholder.com/300x450?text=Film+Poster+4" alt="Film 4 Poster">
+                        <h3><a href="#">Longlegs</a></h3>
+                        <p>Release Year</p>
+                    </div>
+                    </div>
+                <div class="text-center">
+                    <a href="#" class="button secondary-button">View All Films</a>
                 </div>
             </div>
         </section>
 
-        <section class="coming-soon-section">
-            <h2>Coming Soon</h2>
-            <div class="movie-card">
-                <div class="movie-info">
-                    <p>Coming Soon Date</p>
-                    <h3><a href="#">Movie Title 2</a></h3>
-                </div>
-                <img src="https://via.placeholder.com/80x80?text=Movie+Icon" alt="Movie Icon Placeholder" class="movie-logo">
-            </div>
-            <div class="movie-card image-card">
-                <a href="#">
-                    <img src="https://via.placeholder.com/600x250?text=Movie+Poster" alt="Movie Poster Placeholder">
-                </a>
-                <h3><a href="#">Movie Title 3</a></h3>
-            </div>
-        </section>
-
-        <section class="watch-now-section">
-            <h2>Watch Now</h2>
-            <div class="watch-grid">
-                <div class="watch-item">
-                    <p class="status">Now Available</p>
-                    <p class="title">Movie Title A</p>
-                </div>
-                <div class="watch-item">
-                    <p class="status">Now Available</p>
-                    <p class="title">Movie Title B</p>
-                </div>
-                <div class="watch-item">
-                    <p class="status">Now Available</p>
-                    <p class="title">Movie Title C</p>
-                </div>
-                <div class="watch-item">
-                    <p class="status">Now Available</p>
-                    <p class="title">Movie Title D</p>
-                </div>
-                <div class="watch-item">
-                    <p class="status">Now Available</p>
-                    <p class="title">Movie Title E</p>
-                </div>
-                <div class="watch-item">
-                    <p class="status">Now Available</p>
-                    <p class="title">Movie Title F</p>
+        <section id="shop" class="shop-section section-padding bg-light">
+            <div class="container">
+                <h2>NEON Shop</h2>
+                <div class="product-grid">
+                    <div class="product-item">
+                        <img src="https://via.placeholder.com/300x300?text=Product+Image+A" alt="Product A">
+                        <h3><a href="#">Parasite Hoodie</a></h3>
+                        <p class="price">$XX.XX</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://via.placeholder.com/300x300?text=Product+Image+B" alt="Product B">
+                        <h3><a href="#">Anora T-Shirt</a></h3>
+                        <p class="price">$YY.YY</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://via.placeholder.com/300x300?text=Product+Image+C" alt="Product C">
+                        <h3><a href="#">Collector's Item</a></h3>
+                        <p class="price">$ZZ.ZZ</p>
+                    </div>
+                    </div>
+                <div class="text-center">
+                    <a href="#" class="button secondary-button">Explore Full Collection</a>
                 </div>
             </div>
         </section>
 
-        <section class="award-winners-section">
-            <h2>Award Winners</h2>
-            <div class="award-grid">
-                <div class="award-item">
-                    <p class="status">Now Available</p>
-                    <p class="title">Award Movie A</p>
-                </div>
-                <div class="award-item">
-                    <p class="status">Now Available</p>
-                    <p class="title">Award Movie B</p>
-                </div>
-                <div class="award-item">
-                    <p class="status">Now Available</p>
-                    <p class="title">Award Movie C</p>
-                </div>
-                <div class="award-item">
-                    <p class="status">Now Available</p>
-                    <p class="title">Award Movie D</p>
-                </div>
-                <div class="award-item">
-                    <p class="status">Now Available</p>
-                    <p class="title">Award Movie E</p>
-                </div>
-                <div class="award-item">
-                    <p class="status">Now Available</p>
-                    <p class="title">Award Movie F</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="anora-collection">
-            <h2>Another Collection Title</h2>
-            <div class="product-grid">
-                <div class="product-item">
-                    <a href="#">
-                        <img src="https://via.placeholder.com/300x300?text=Product+Image+5" alt="Product 5 Placeholder">
-                    </a>
-                    <p class="product-preorder">Pre-Order Now</p>
-                    <p class="product-name">ANOTHER PRODUCT 1</p>
-                    <p class="product-price">$YY</p>
-                </div>
-                <div class="product-item">
-                    <a href="#">
-                        <img src="https://via.placeholder.com/300x300?text=Product+Image+6" alt="Product 6 Placeholder">
-                    </a>
-                    <p class="product-name">ANOTHER PRODUCT 2</p>
-                    <p class="product-price">$YY</p>
-                </div>
-                <div class="product-item">
-                    <a href="#">
-                        <img src="https://via.placeholder.com/300x300?text=Product+Image+7" alt="Product 7 Placeholder">
-                    </a>
-                    <p class="product-name">ANOTHER PRODUCT 3</p>
-                    <p class="product-price">$YY</p>
-                </div>
-                <div class="product-item">
-                    <a href="#">
-                        <img src="https://via.placeholder.com/300x300?text=Product+Image+8" alt="Product 8 Placeholder">
-                    </a>
-                    <p class="product-name">ANOTHER PRODUCT 4</p>
-                    <p class="product-price">$YY</p>
-                </div>
-                <div class="product-item">
-                    <a href="#">
-                        <img src="https://via.placeholder.com/300x300?text=Product+Image+9" alt="Product 9 Placeholder">
-                    </a>
-                    <p class="product-name">ANOTHER PRODUCT 5</p>
-                    <p class="product-price">$YY</p>
-                </div>
-            </div>
-            <a href="#" class="button view-all-button">View All</a>
-        </section>
-
-        <section class="newsletter-section">
-            <div class="newsletter-content">
-                <img src="https://via.placeholder.com/60x15?text=Icon" alt="Newsletter Icon Placeholder">
-                <div class="newsletter-title">Newsletter</div>
+        <section id="newsletter" class="newsletter-section section-padding bg-dark">
+            <div class="container text-center">
+                <h2>Stay Updated</h2>
+                <p>Sign up for our newsletter to get the latest news and updates.</p>
                 <form class="newsletter-form">
-                    <input type="email" placeholder="Enter your email address">
-                    <button type="submit" class="hidden-button"></button>
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="button primary-button">Subscribe</button>
                 </form>
             </div>
         </section>
     </main>
 
     <footer class="footer">
-        <div class="footer-columns">
+        <div class="container footer-content">
             <div class="footer-column">
-                <h4>Films</h4>
+                <h4>FILMS</h4>
                 <ul>
-                    <li><a href="#">All</a></li>
+                    <li><a href="#">All Films</a></li>
                     <li><a href="#">In Theaters</a></li>
+                    <li><a href="#">Coming Soon</a></li>
                     <li><a href="#">Watch Now</a></li>
+                    <li><a href="#">Award Winners</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h4>Shop</h4>
+                <h4>SHOP</h4>
                 <ul>
-                    <li><a href="#">All</a></li>
+                    <li><a href="#">All Products</a></li>
                     <li><a href="#">Apparel</a></li>
                     <li><a href="#">Collectibles</a></li>
                     <li><a href="#">Posters</a></li>
-                    <li><a href="#">Bags</a></li>
-                    <li><a href="#">Toys</a></li>
                     <li><a href="#">Blu-Ray</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h4>Company Info</h4>
+                <h4>COMPANY</h4>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Shipping & Returns</a></li>
-                    <li><a href="#">Terms of Use</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Cookie Policy</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Host a Screening</a></li>
+                    <li><a href="#">About NEON</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Careers</a></li>
                 </ul>
             </div>
             <div class="footer-column social-links">
-                <a href="#" target="_blank"><img src="https://via.placeholder.com/30x30?text=Insta" alt="Instagram Placeholder"></a>
-                <a href="#" target="_blank"><img src="https://via.placeholder.com/30x30?text=TikTok" alt="TikTok Placeholder"></a>
-                <a href="#" target="_blank"><img src="https://via.placeholder.com/30x30?text=X" alt="Twitter Placeholder"></a>
-                <a href="#" target="_blank"><img src="https://via.placeholder.com/30x30?text=YT" alt="YouTube Placeholder"></a>
+                <h4>FOLLOW US</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>Website by<a href="#" class="website-by">Your Company</a></p>
-            <p>Your Company, LLC © 202X. All Rights Reserved.</p>
+            <div class="container">
+                <p>&copy; 2025 NEON. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="#">Cookie Policy</a></p>
+            </div>
         </div>
     </footer>
-
-    <div class="bottom-info">
-        <div class="bottom-item">
-            <div class="title">Movie/Info Title 1</div>
-            <div class="description">Year, Directed by Name</div>
-        </div>
-        <div class="bottom-item">
-            <div class="title">Movie/Info Title 2</div>
-            <div class="description">Year, A Film by Name</div>
-        </div>
-    </div>
 
     <script src="js/script.js"></script>
 </body>
