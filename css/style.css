@@ -1,555 +1,201 @@
-/* 기본 설정 */
-:root {
-    --primary-color: #000;
-    --secondary-color: #fff;
-    --text-color: #333;
-    --light-bg: #f8f8f8;
-    --dark-bg: #1a1a1a;
-    --accent-color: #ff0000; /* 예시 강조 색상 */
-}
+/* --- 기존 CSS 내용 유지 --- */
 
-body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    margin: 0;
+/* 헤더 - 모바일 메뉴 토글 버튼 */
+.menu-toggle {
+    display: none; /* 기본적으로 숨김 (데스크톱) */
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    font-size: 1.5em;
+    cursor: pointer;
     padding: 0;
-    background-color: var(--light-bg);
-    color: var(--text-color);
-    line-height: 1.6;
-    scroll-behavior: smooth;
 }
 
-a {
-    text-decoration: none;
-    color: var(--text-color);
+/* 모바일 메뉴 오버레이 */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(100%); /* 초기에는 화면 밖으로 숨김 */
+    transition: transform 0.3s ease-in-out;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.mobile-menu-overlay.active {
+    transform: translateX(0); /* 활성화 시 나타남 */
+}
+
+.close-menu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    font-size: 2em;
+    cursor: pointer;
+}
+
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.mobile-nav ul li {
+    margin: 20px 0;
+}
+
+.mobile-nav ul li a {
+    color: var(--secondary-color);
+    font-size: 1.8em;
+    font-weight: bold;
+    text-transform: uppercase;
     transition: color 0.3s ease;
 }
 
-a:hover {
+.mobile-nav ul li a:hover {
     color: var(--accent-color);
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-weight: bold;
-    color: var(--primary-color);
-}
-
-h1 { font-size: 3.5em; }
-h2 { font-size: 2.5em; }
-h3 { font-size: 1.8em; }
-h4 { font-size: 1.3em; }
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.section-padding {
-    padding: 80px 0;
-}
-
-.bg-light { background-color: var(--light-bg); }
-.bg-dark { background-color: var(--dark-bg); color: var(--secondary-color); }
-
-.text-center { text-align: center; }
-
-/* 버튼 스타일 */
-.button {
-    display: inline-block;
-    padding: 12px 25px;
-    border-radius: 5px;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    border: none;
-    cursor: pointer;
-}
-
-.primary-button {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-}
-
-.primary-button:hover {
-    background-color: #333;
-}
-
-.secondary-button {
-    background-color: transparent;
-    color: var(--primary-color);
-    border: 2px solid var(--primary-color);
-}
-
-.secondary-button:hover {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-}
-
-/* 헤더 */
-.header {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    padding: 15px 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header .logo img {
-    height: 40px;
-    width: auto;
-}
-
-.main-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-.main-nav ul li {
-    margin-left: 30px;
-}
-
-.main-nav ul li a {
-    color: var(--secondary-color);
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 0.9em;
-    padding: 5px 0;
-    position: relative;
-}
-
-.main-nav ul li a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--accent-color);
-    transition: width 0.3s ease;
-}
-
-.main-nav ul li a:hover::after {
+/* 히어로 슬라이더 (Swiper 커스터마이징) */
+.hero-slider {
     width: 100%;
+    height: 650px; /* 슬라이더 높이 */
+    background-color: var(--primary-color); /* 로딩 중 배경색 */
 }
 
-.header-actions {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.header-actions .button {
-    padding: 8px 15px;
-    font-size: 0.85em;
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
-}
-.header-actions .button:hover {
-    background-color: #ccc;
-}
-
-.search-icon {
-    color: var(--secondary-color);
-    font-size: 1.2em;
-}
-.search-icon:hover {
-    color: var(--accent-color);
-}
-
-/* 히어로 섹션 */
-.hero-section {
-    position: relative;
-    height: 600px; /* 높이 고정 또는 vh 사용 */
-    background: url('https://via.placeholder.com/1920x1080?text=Hero+Background+Image') no-repeat center center/cover;
+.swiper-slide {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-size: cover;
+    background-position: center;
     color: var(--secondary-color);
-    text-align: center;
+    position: relative;
 }
 
-.hero-image-overlay {
+/* 각 슬라이드의 배경 이미지 (placeholder 사용) */
+.swiper-slide.slide-1 {
+    background-image: url('https://via.placeholder.com/1920x650?text=Film+Slide+1');
+}
+.swiper-slide.slide-2 {
+    background-image: url('https://via.placeholder.com/1920x650?text=Film+Slide+2');
+}
+.swiper-slide.slide-3 {
+    background-image: url('https://via.placeholder.com/1920x650?text=Film+Slide+3');
+}
+
+.swiper-slide::before { /* 이미지 위에 어두운 오버레이 */
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* 이미지 위에 오버레이 */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
 
-.hero-content {
+.slide-content {
     position: relative;
     z-index: 2;
+    text-align: center;
+    padding: 20px;
     max-width: 800px;
 }
 
-.hero-content h1 {
+.slide-content h1 {
     color: var(--secondary-color);
-    font-size: 4em;
+    font-size: 4.5em;
     margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 }
 
-.hero-content p {
-    font-size: 1.3em;
-    margin-bottom: 30px;
-}
-
-/* 영화 섹션 및 상품 섹션 그리드 */
-.film-categories {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 40px;
-    flex-wrap: wrap;
-}
-
-.category-button {
-    background-color: transparent;
-    border: 1px solid var(--primary-color);
-    color: var(--primary-color);
-    padding: 8px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9em;
-}
-
-.category-button:hover, .category-button.active {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-}
-
-.film-grid, .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.film-item, .product-item {
-    text-align: center;
-    background-color: var(--secondary-color);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.film-item:hover, .product-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
-
-.film-item img, .product-item img {
-    width: 100%;
-    height: 380px; /* 이미지 높이 통일 */
-    object-fit: cover;
-    margin-bottom: 15px;
-}
-
-.film-item h3, .product-item h3 {
+.slide-content p {
     font-size: 1.4em;
-    margin-bottom: 10px;
-}
-
-.film-item p {
-    color: #777;
-    font-size: 0.9em;
-}
-
-.product-item .price {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: var(--primary-color);
-    margin-bottom: 15px;
-}
-
-/* 뉴스레터 섹션 */
-.newsletter-section {
-    background-image: url('https://via.placeholder.com/1920x400?text=Newsletter+Background');
-    background-size: cover;
-    background-position: center;
-    position: relative;
-}
-
-.newsletter-section::before {
-    background-color: rgba(0, 0, 0, 0.6); /* 어두운 오버레이 */
-}
-
-.newsletter-section h2 {
-    color: var(--secondary-color);
-    margin-bottom: 10px;
-}
-
-.newsletter-section p {
-    color: #ccc;
-    font-size: 1.1em;
     margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
-.newsletter-form {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    max-width: 600px;
-    margin: 0 auto;
+.hero-slider .swiper-pagination-bullet {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+.hero-slider .swiper-pagination-bullet-active {
+    background-color: var(--accent-color);
 }
 
-.newsletter-form input[type="email"] {
-    flex-grow: 1;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1em;
-    outline: none;
-    background-color: rgba(255, 255, 255, 0.9);
-}
-
-.newsletter-form .button {
-    padding: 12px 30px;
-    font-size: 1em;
-}
-
-/* 푸터 */
-.footer {
-    background-color: var(--primary-color);
-    color: #bbb;
-    padding: 50px 0 20px;
-    font-size: 0.9em;
-}
-
-.footer-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 30px;
-    margin-bottom: 30px;
-}
-
-.footer-column {
-    flex: 1;
-    min-width: 200px;
-}
-
-.footer-column h4 {
+.hero-slider .swiper-button-next,
+.hero-slider .swiper-button-prev {
     color: var(--secondary-color);
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    font-size: 1.1em;
 }
-
-.footer-column ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.footer-column ul li {
-    margin-bottom: 10px;
-}
-
-.footer-column ul li a {
-    color: #bbb;
-}
-
-.footer-column ul li a:hover {
+.hero-slider .swiper-button-next:hover,
+.hero-slider .swiper-button-prev:hover {
     color: var(--accent-color);
 }
 
-.social-icons a {
-    color: var(--secondary-color);
-    font-size: 1.5em;
-    margin-right: 15px;
-}
-
-.social-icons a:hover {
-    color: var(--accent-color);
-}
-
-.footer-bottom {
-    border-top: 1px solid #333;
-    padding-top: 20px;
-    text-align: center;
-    font-size: 0.8em;
-    color: #888;
-}
-
-.footer-bottom a {
-    color: #888;
-}
-.footer-bottom a:hover {
-    color: var(--secondary-color);
+/* 영화 카테고리 필터링 */
+.film-item.hidden {
+    display: none;
 }
 
 /* 반응형 디자인 */
 @media (max-width: 992px) {
     .main-nav {
-        display: none; /* 모바일에서는 메뉴 숨김 (햄버거 메뉴 등으로 대체 필요) */
+        display: none; /* 데스크톱 메뉴 숨김 */
+    }
+    .menu-toggle {
+        display: block; /* 모바일 메뉴 토글 버튼 표시 */
     }
     .header-content {
-        justify-content: center; /* 로고와 액션 버튼만 중앙 정렬 */
-        gap: 20px;
+        justify-content: space-between; /* 로고와 버튼을 양 끝으로 */
     }
-    .hero-content h1 {
+    .header-actions {
+        gap: 15px;
+    }
+    .hero-slider {
+        height: 500px;
+    }
+    .slide-content h1 {
         font-size: 3em;
     }
-    .film-grid, .product-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-    .footer-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    .footer-column {
-        min-width: unset;
-        width: 100%;
-    }
-    .social-icons {
-        justify-content: center;
+    .slide-content p {
+        font-size: 1.2em;
     }
 }
 
 @media (max-width: 768px) {
-    .section-padding {
-        padding: 50px 0;
-    }
-    h1 { font-size: 2.8em; }
-    h2 { font-size: 2em; }
-    .hero-section {
+    .hero-slider {
         height: 400px;
     }
-    .hero-content h1 {
+    .slide-content h1 {
         font-size: 2.5em;
     }
-    .hero-content p {
+    .slide-content p {
         font-size: 1em;
-    }
-    .newsletter-form {
-        flex-direction: column;
-        gap: 10px;
-    }
-    .newsletter-form input, .newsletter-form .button {
-        width: 100%;
     }
 }
 
 @media (max-width: 480px) {
-    .header-actions {
-        flex-direction: column;
-        gap: 10px;
-    }
     .header-actions .button {
-        width: 100%;
+        display: none; /* 모바일에서 티켓 버튼 숨김 (선택 사항) */
     }
-    .hero-content h1 {
-        font-size: 2em;
+    .hero-slider {
+        height: 300px;
     }
-    .hero-content p {
+    .slide-content h1 {
+        font-size: 1.8em;
+    }
+    .slide-content p {
         font-size: 0.9em;
     }
-    .film-grid, .product-grid {
-        grid-template-columns: 1fr;
-    }
-}
-/* --- 기존 CSS 내용 유지 --- */
-
-/* 헤더 스크롤 효과 (배경색 변경, 그림자 추가) */
-.header.scrolled {
-    background-color: rgba(0, 0, 0, 0.9); /* 스크롤 시 더 진한 배경 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-/* 히어로 섹션 콘텐츠 애니메이션 */
-.hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    opacity: 0; /* 초기에는 숨김 */
-    transform: translateY(20px); /* 아래에서 위로 올라오도록 */
-    transition: opacity 1s ease-out, transform 1s ease-out; /* 부드러운 전환 */
-}
-
-.hero-section.loaded .hero-content {
-    opacity: 1; /* 로드 시 나타남 */
-    transform: translateY(0);
-}
-
-/* 모든 섹션의 콘텐츠 나타나는 애니메이션 (스크롤 시) */
-.section-padding h2,
-.film-grid, .product-grid,
-.film-categories,
-.newsletter-section h2,
-.newsletter-section p,
-.newsletter-form {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.section-padding.in-view h2,
-.section-padding.in-view .film-grid,
-.section-padding.in-view .product-grid,
-.section-padding.in-view .film-categories,
-.section-padding.in-view .newsletter-section h2,
-.section-padding.in-view .newsletter-section p,
-.section-padding.in-view .newsletter-form {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* 각 아이템의 지연 애니메이션 */
-.film-item, .product-item {
-    /* 기존 스타일 유지 */
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-/* JavaScript에서 .animated 클래스를 추가할 때 각 아이템에 지연 적용 */
-.film-item.animated, .product-item.animated {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* 소셜 아이콘 호버 효과 */
-.social-icons a i {
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.social-icons a:hover i {
-    color: var(--accent-color);
-    transform: scale(1.1); /* 확대 효과 */
-}
-
-/* 버튼 호버 시 약간의 움직임 */
-.button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-/* 카테고리 버튼 선택 효과 */
-.category-button.active {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
